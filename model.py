@@ -93,3 +93,44 @@ class Model():
         return self.phieuNhapTbAndFood
     def getDataPh(self):
         return self.dataPh
+        
+    def fetch_db(self):
+        con = sqlite3.connect('example.db')
+        curGlobal = con.cursor()
+
+        curGlobal.execute('''SELECT * FROM phieuThue''')
+        dataPhieuThue = curGlobal.fetchall()
+        tmp = []
+        for row in dataPhieuThue: tmp.append(list(row))
+        self.dataPhieuThue = tmp
+
+        curGlobal.execute('''SELECT * FROM nhanVien''')
+        dataNv = curGlobal.fetchall()
+        tmp = []
+        for row in dataNv: tmp.append(list(row))
+        self.dataNv = tmp
+
+        curGlobal.execute('''SELECT * FROM ban''')
+        dataPh = curGlobal.fetchall()
+        tmp = []
+        for row in dataPh: tmp.append(list(row))
+        self.dataPh = tmp
+
+        curGlobal.execute('''SELECT * FROM khachHang''')
+        dataKh = curGlobal.fetchall()
+        tmp = []
+        for row in dataKh: tmp.append(list(row))
+        self.dataKh = tmp
+
+        curGlobal.execute('''SELECT * FROM dichVu''')
+        dataDv = curGlobal.fetchall()
+        tmp = []
+        for row in dataDv: tmp.append(list(row))
+        self.dataDv = tmp
+
+        curGlobal.execute('''SELECT * FROM pNhapTbiAndFood''')
+        phieuNhapTbAndFood = curGlobal.fetchall()
+        tmp = []
+        for row in phieuNhapTbAndFood: tmp.append(list(row))
+        self.phieuNhapTbAndFood = tmp
+        pass
